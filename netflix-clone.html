@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Netflix – Watch TV Shows Online, Watch Movies Online</title>
+  <style>
+    :root {
+      --nav-height: 60px;
+      --spacing: 20px;
+      --font: 'Netflix Sans', 'Helvetica Neue', Arial, sans-serif;
+      --red: #e50914;
+      --white: #fff;
+      --black: #000;
+      --gray-light: #333;
+      --gray-dark: #222;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font); color: var(--white); background: var(--black); }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+
+    /* Navbar */
+    .navbar {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: var(--nav-height);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 var(--spacing); z-index: 2;
+    }
+    .navbar .logo img { height: 32px; }
+    .navbar .controls { display: flex; align-items: center; gap: var(--spacing); }
+    .language-selector {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.4);
+      padding: 4px 8px; border-radius: 2px;
+    }
+    .sign-in {
+      padding: 8px 16px; font-size: 0.9rem; border-radius: 2px;
+      background: var(--red); color: var(--white);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative; width: 100%; min-height: 100vh;
+      background: url('https://assets.nflxext.com/ffe/siteui/vlv3/23379a62-5ce6-4bca-8a3f-2a1e174c1e48/IN-en-20250202-popsignuptwoweeks-perspective_alpha_website_large.jpg')
+                  center/cover no-repeat;
+      display: flex; justify-content: center; align-items: center; text-align: center;
+      padding: 0 var(--spacing);
+    }
+    .hero::after {
+      content: "";
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.7) 30%,
+        rgba(0,0,0,0.7) 70%,
+        transparent 100%
+      );
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 640px; margin-top: 60px;
+    }
+    .hero-content h1 {
+      font-size: 3rem; margin-bottom: 16px; line-height: 1.1;
+    }
+    .hero-content p {
+      font-size: 1.1rem; margin-bottom: 16px;
+    }
+    .email-form {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;
+    }
+    .email-form input {
+      flex: 1; min-width: 300px; height: 60px;
+      padding: 0 16px; font-size: 1.1rem;
+      background: rgba(0,0,0,0.8); color: var(--white);
+      border-radius: 2px;
+    }
+    .email-form input::placeholder { color: #8c8c8c; }
+    .email-form button {
+      display: flex; align-items: center; justify-content: center;
+      height: 60px; padding: 0 20px; font-size: 1.1rem;
+      background: var(--red); color: var(--white); border-radius: 2px;
+    }
+    .email-form button .arrow {
+      margin-left: 8px; transform: translateX(2px); font-size: 1.4rem;
+    }
+
+    /* FAQ Accordion Feature */
+    .faq-section { background: var(--gray-dark); padding: 60px var(--spacing); }
+    .faq-section h2 {
+      font-size: 2rem; text-align: center; margin-bottom: 40px;
+    }
+    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq {
+      border-bottom: 1px solid #444;
+    }
+    .faq:last-child { border-bottom: none; }
+    .question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0; cursor: pointer; font-size: 1.1rem;
+    }
+    .question:hover { color: var(--red); }
+    .answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+      font-size: 1rem; line-height: 1.5; color: #ddd;
+    }
+    .question .icon {
+      font-size: 1.4rem; transition: transform 0.3s ease;
+    }
+    .faq.open .answer {
+      max-height: 200px; margin-top: 8px;
+    }
+    .faq.open .question .icon {
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="https://assets.nflxext.com/ffe/siteui/common/icons/nficon2016.ico" alt="Netflix Logo" />
+    </div>
+    <div class="controls">
+      <div class="language-selector">
+        <span>🌐</span><span>English</span><span>▼</span>
+      </div>
+      <button class="sign-in">Sign In</button>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Unlimited movies,<br>TV shows and more</h1>
+      <p>Starts at ₹149. Cancel at any time.</p>
+      <p>Ready to watch? Enter your email to create or restart your membership.</p>
+      <form class="email-form">
+        <input type="email" placeholder="Email address" required />
+        <button type="submit">
+          Get Started <span class="arrow">›</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- New Interactive FAQ Accordion -->
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq">
+        <div class="question">What is Netflix? <span class="icon">+</span></div>
+        <div class="answer">
+          Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies,
+          anime, documentaries, and more on thousands of internet-connected devices.
+        </div>
+      </div>
+      <div class="faq">
+        <div class="question">How much does Netflix cost? <span class="icon">+</span></div>
+        <div class="answer">
+          Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device,
+          all for one fixed monthly fee. Plans start at ₹149 per month. No extra costs, no contracts.
+        </div>
+      </div>
+      <div class="faq">
+        <div class="question">Where can I watch? <span class="icon">+</span></div>
+        <div class="answer">
+          Watch anywhere, anytime, on an unlimited number of devices. Sign in with your Netflix account
+          to watch instantly on the web at netflix.com from your personal computer or on any
+          internet-connected device.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // FAQ Accordion Toggle
+    document.querySelectorAll('.faq').forEach(item => {
+      item.querySelector('.question').addEventListener('click', () => {
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
